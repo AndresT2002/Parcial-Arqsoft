@@ -1,4 +1,10 @@
 package com.udea.ultimo.Persistance.Repository;
 
-public interface HistoriaClinicaRepository {
+import com.udea.ultimo.Persistance.Model.HistoriaClinica;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface HistoriaClinicaRepository extends JpaRepository<HistoriaClinica,String> {
 }
