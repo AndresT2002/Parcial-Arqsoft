@@ -3,23 +3,19 @@ package com.udea.ultimo.Controller;
 import com.udea.ultimo.Config.ApiVersion;
 import com.udea.ultimo.Persistance.Model.HistoriaClinica;
 import com.udea.ultimo.Service.HistoriaClinica.IHistoriaClinicaService;
-import com.udea.ultimo.Service.HistoriaClinica.IMedicoServicio;
-import com.udea.ultimo.Service.HistoriaClinica.IPacienteService;
-import org.apache.coyote.Response;
+import com.udea.ultimo.Service.Medico.IMedicoServicio;
+import com.udea.ultimo.Service.Paciente.IPacienteService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
+
 
 @RestController
-@Api(value = "Historia Clínica Controller", tags = "Historia Clínica")
 @RequestMapping(ApiVersion.V1_API + "/history")
 public class HistoryController {
 
@@ -33,14 +29,13 @@ public class HistoryController {
     private IMedicoServicio medicoService;
 
     @GetMapping(path = "/paciente/{cedula}", produces = "application/json;version=1")
-    @ApiOperation(value = "Obtener Historia Clínica por Cédula de un paciente", response = HistoriaClinica.class)
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Historia Clínica encontrada correctamente"),
-            @ApiResponse(code = 404, message = "paciente no encontrado para la cédula proporcionada"),
-            @ApiResponse(code = 204, message = "Historia Clínica no encontrada para la cédula proporcionada")
+    @Operation(summary = "Obtener Historia Clínica por Cédula de un paciente", responses = {
+            @ApiResponse(responseCode = "200", description = "Historia Clínica encontrada correctamente"),
+            @ApiResponse(responseCode = "404", description = "paciente no encontrado para la cédula proporcionada"),
+            @ApiResponse(responseCode = "204", description = "Historia Clínica no encontrada para la cédula proporcionada")
     })
-    public ResponseEntity<?> historiaClinica(
-            @ApiParam(value = "Cédula del paciente", required = true) @PathVariable String cedula) {
+
+    public ResponseEntity<?> historiaClinica(@PathVariable String cedula) {
         if (!pacienteService.pacienteExist(cedula)) {
             return ResponseEntity.notFound().build();
         }
@@ -57,14 +52,12 @@ public class HistoryController {
     }
 
     @GetMapping(path = "/medico/{cedula}", produces = "application/json;version=1")
-    @ApiOperation(value = "Obtener Historia Clínica por Cédula de un médico", response = HistoriaClinica.class)
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Historia Clínica encontrada correctamente"),
-            @ApiResponse(code = 404, message = "Medico no encontrado para la cédula proporcionada"),
-            @ApiResponse(code = 204, message = "Historia Clínica no encontrada para la cédula proporcionada")
+    @Operation(summary = "Obtener Historia Clínica por Cédula de un médico", responses = {
+            @ApiResponse(responseCode = "200", description = "Historia Clínica encontrada correctamente"),
+            @ApiResponse(responseCode = "404", description = "Medico no encontrado para la cédula proporcionada"),
+            @ApiResponse(responseCode = "204", description = "Historia Clínica no encontrada para la cédula proporcionada")
     })
-    public ResponseEntity<?> historiaClinicaDoctor(
-            @ApiParam(value = "Cédula del médico", required = true) @PathVariable String cedula) {
+    public ResponseEntity<?> historiaClinicaDoctor(@PathVariable String cedula) {
 
         if (!medicoService.medicoExist(cedula)) {
             return ResponseEntity.notFound().build();
@@ -78,13 +71,12 @@ public class HistoryController {
     }
 
     @PostMapping(path = "/paciente", produces = "application/json;version=1")
-    @ApiOperation(value = "Ingresar Historia Clínica", response = HistoriaClinica.class)
-    @ApiResponses(value = {
-            @ApiResponse(code = 201, message = "Historia Clínica creada exitosamente"),
-            @ApiResponse(code = 400, message = "Solicitud inválida")
+    @Operation(summary = "Ingresar Historia Clínica", responses = {
+            @ApiResponse(responseCode = "201", description = "Historia Clínica creada exitosamente"),
+            @ApiResponse(responseCode = "400", description = "Solicitud inválida")
     })
-    public ResponseEntity<?> ingresarHistoria(
-            @ApiParam(value = "Datos de la Historia Clínica", required = true) @RequestBody HistoriaClinica historiaClinica) {
+
+    public ResponseEntity<?> ingresarHistoria(@RequestBody HistoriaClinica historiaClinica) {
         HistoriaClinica historiaClinica1 = historyService.crearHistoriaClinica(historiaClinica);
         if (historiaClinica1 == null) {
             return ResponseEntity.badRequest().build();

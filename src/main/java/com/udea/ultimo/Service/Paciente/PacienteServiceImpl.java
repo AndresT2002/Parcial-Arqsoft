@@ -1,6 +1,5 @@
-package com.udea.ultimo.Service.HistoriaClinica;
+package com.udea.ultimo.Service.Paciente;
 
-import com.udea.ultimo.Persistance.Model.Medico;
 import com.udea.ultimo.Persistance.Model.Paciente;
 import com.udea.ultimo.Persistance.Repository.PacienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;

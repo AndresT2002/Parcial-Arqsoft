@@ -1,4 +1,4 @@
-package com.udea.ultimo.Service.HistoriaClinica;
+package com.udea.ultimo.Service.Paciente;
 
 public interface IPacienteService {
 

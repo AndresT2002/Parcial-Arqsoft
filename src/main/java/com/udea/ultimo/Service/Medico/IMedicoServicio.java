@@ -1,4 +1,4 @@
-package com.udea.ultimo.Service.HistoriaClinica;
+package com.udea.ultimo.Service.Medico;
 
 public interface IMedicoServicio {
 
