@@ -45,6 +45,8 @@ public class HistoriaClinicaServiceImpl implements  IHistoriaClinicaService{
         return historiaClinicaRepository.findHistoriaClinicaByPaciente(cedulaPaciente);
     }
 
+
+
     @Override
     public List<HistoriaClinica> historiaClinicaPorMedico(String cedulaMedico) {
         return historiaClinicaRepository.findHistoriaClinicaByMedico(cedulaMedico);
