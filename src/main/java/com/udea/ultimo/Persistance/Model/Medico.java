@@ -19,6 +19,7 @@ import lombok.Setter;
 public class Medico {
 
     @Id
+    @Column(name = "cedula")
     private String cedula;
 
     @Column(name = "nombre")
