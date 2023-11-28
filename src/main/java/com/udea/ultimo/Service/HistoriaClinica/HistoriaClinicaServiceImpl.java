@@ -42,12 +42,12 @@ public class HistoriaClinicaServiceImpl implements  IHistoriaClinicaService{
 
     @Override
     public List<HistoriaClinica> historiaClinicaPorPaciente(String cedulaPaciente) {
-        return historiaClinicaRepository.findAllByCedulaPaciente();
+        return historiaClinicaRepository.findHistoriaClinicaByPaciente(cedulaPaciente);
     }
 
     @Override
     public List<HistoriaClinica> historiaClinicaPorMedico(String cedulaMedico) {
-        return historiaClinicaRepository.findAllByCedulaMedico();
+        return historiaClinicaRepository.findHistoriaClinicaByMedico(cedulaMedico);
     }
 
 
