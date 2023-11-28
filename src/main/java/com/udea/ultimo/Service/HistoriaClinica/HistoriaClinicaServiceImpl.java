@@ -32,9 +32,9 @@ public class HistoriaClinicaServiceImpl implements  IHistoriaClinicaService{
 
         Optional<Medico> medico = medicoRepository.findByCedula(historiaClinica.getCedulaMedico());
         Optional<Paciente> paciente = pacienteRepository.findByCedula(historiaClinica.getCedulaPaciente());
-        if(paciente.isPresent() || medico.isPresent() ) {
-            historiaClinicaRepository.save(historiaClinica);
-            return historiaClinica;
+        if(paciente.isPresent() && medico.isPresent() ) {
+            HistoriaClinica result =  historiaClinicaRepository.save(historiaClinica);
+            return result;
         }
 
         return null;
