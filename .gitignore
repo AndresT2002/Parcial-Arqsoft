@@ -33,6 +33,3 @@ build/
 .vscode/
 
 ### resources ###
-!**/src/main/resources/
-
-src/main/resources/
