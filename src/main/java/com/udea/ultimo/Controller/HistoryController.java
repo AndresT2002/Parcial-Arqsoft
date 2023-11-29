@@ -1,5 +1,6 @@
 package com.udea.ultimo.Controller;
 
+import com.udea.ultimo.Config.ApiVersion;
 import com.udea.ultimo.Persistance.Model.HistoriaClinica;
 import com.udea.ultimo.Service.HistoriaClinica.IHistoriaClinicaService;
 import org.springframework.beans.factory.annotation.Autowired;
