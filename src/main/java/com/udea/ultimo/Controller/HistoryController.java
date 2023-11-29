@@ -36,7 +36,7 @@ public class HistoryController {
     @ApiOperation(value = "Obtener Historia Clínica por Cédula de un paciente", response = HistoriaClinica.class)
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Historia Clínica encontrada correctamente"),
-            @ApiResponse(code = 404, message = "paciente no encontrado para la cédula proporcionada")
+            @ApiResponse(code = 404, message = "paciente no encontrado para la cédula proporcionada"),
             @ApiResponse(code = 204, message = "Historia Clínica no encontrada para la cédula proporcionada")
     })
     public ResponseEntity<?> historiaClinica(
@@ -85,8 +85,8 @@ public class HistoryController {
     })
     public ResponseEntity<?> ingresarHistoria(
             @ApiParam(value = "Datos de la Historia Clínica", required = true) @RequestBody HistoriaClinica historiaClinica) {
-        HistoriaClinica historiaClinica1 = historyService.crearHistoriaClinica(historiaClinica)
-                if (historiaClinica1 == null) {
+        HistoriaClinica historiaClinica1 = historyService.crearHistoriaClinica(historiaClinica);
+        if (historiaClinica1 == null) {
             return ResponseEntity.badRequest().build();
         }
         return ResponseEntity.ok(historyService.crearHistoriaClinica(historiaClinica));
